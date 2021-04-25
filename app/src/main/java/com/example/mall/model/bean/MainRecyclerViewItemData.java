@@ -1,12 +1,12 @@
-package com.example.mall.adapter;
+package com.example.mall.model.bean;
 
-public class Fruit {
+public class MainRecyclerViewItemData {
 
     private String name;
 
     private int imageId;
 
-    public Fruit(String name, int imageId) {
+    public MainRecyclerViewItemData(String name, int imageId) {
         this.name = name;
         this.imageId = imageId;
     }

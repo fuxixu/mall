@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">mall</string>
+    <string name="tab_hot_product">热门商品</string>
+    <string name="tab_all_product">全部商品</string>
+    <string name="tab_drinks">饮料</string>
+    <string name="tab_noodle">方便面</string>
+    <string name="tab_smoke">香烟</string>
+    <string name="tab_snacks">零食</string>
+    <string name="tab_food">小吃</string>
 </resources>

@@ -11,7 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
-
+/**
+ * cardview获取焦点变大
+ * on 2021/4/25.
+ */
 public class CardViewRecylerItem extends CardView {
 
     public CardViewRecylerItem(@NonNull Context context) {

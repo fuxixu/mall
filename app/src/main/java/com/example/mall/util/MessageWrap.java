@@ -2,13 +2,13 @@ package com.example.mall.util;
 
 public class MessageWrap {
 
-    public final String message;
+    public final int message;
 
-    public MessageWrap(String message) {
+    public MessageWrap(int message) {
         this.message = message;
     }
 
-    public String getMessage() {
+    public int getMessage() {
         return message;
     }
 }

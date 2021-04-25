@@ -5,16 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.app.AppComponentFactory;
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 
-import com.example.mall.adapter.Fruit;
-import com.example.mall.adapter.LinerRecycleAdapter;
+import com.example.mall.model.bean.MainRecyclerViewItemData;
+import com.example.mall.adapter.MainActivityRecyclerViewAdpter;
 import com.example.mall.ui.AccountDialogFragment;
-import com.example.mall.ui.BaseActivity;
 import com.example.mall.ui.CartDialogFragment;
 import com.example.mall.ui.OrderHistoryDialogFragment;
 import com.example.mall.util.MessageWrap;
@@ -33,21 +29,15 @@ import q.rorbin.verticaltablayout.widget.TabView;
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     VerticalTabLayout tabLayout;
-    private List<Fruit> fruitList = new ArrayList<Fruit>();
-    LinerRecycleAdapter adapter;
+    private List<MainRecyclerViewItemData> mainRecyclerViewItemDataList = new ArrayList<MainRecyclerViewItemData>();
+    MainActivityRecyclerViewAdpter adapter;
 
     /**
      * 当前选中的级别
      */
     private int currentLevel;
 
-    public static final int LEVEL_HOT = 0;//热门商品
-    public static final int LEVEL_ALL = 1;//全部商品
-    public static final int LEVEL_DRINKS = 2;//饮料
-    public static final int LEVEL_NOODLE = 3;//方便面
-    public static final int LEVEL_SMOKE = 4;//香烟
-    public static final int LEVEL_SNACKS = 5;//零食
-    public static final int LEVEL_TAPAS = 6;//小吃
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void selectTab(int  id) {
         currentLevel = id;
-        if (fruitList != null) {
-            fruitList.clear();
+        if (mainRecyclerViewItemDataList != null) {
+            mainRecyclerViewItemDataList.clear();
         }
         initFruits(currentLevel);
         adapter.notifyDataSetChanged();
@@ -115,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         StaggeredGridLayoutManager layoutManager = new
                 StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new LinerRecycleAdapter(fruitList);
+        adapter = new MainActivityRecyclerViewAdpter(mainRecyclerViewItemDataList);
 
         recyclerView.setAdapter(adapter);
 
@@ -123,17 +113,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        setTabItem("热门商品");
-        setTabItem("全部商品");
-        setTabItem("饮料");
-        setTabItem("方便面");
-        setTabItem("香烟");
-        setTabItem("零食");
-        setTabItem("小吃");
+        setTabItem(R.string.tab_hot_product);
+        setTabItem(R.string.tab_all_product);
+        setTabItem(R.string.tab_drinks);
+        setTabItem(R.string.tab_noodle);
+        setTabItem(R.string.tab_smoke);
+        setTabItem(R.string.tab_snacks);
+        setTabItem(R.string.tab_food);
     }
-    private void setTabItem(String name) {
+    private void setTabItem(int name) {
         QTabView qTabView = new QTabView(getBaseContext()).setTitle(
-                new QTabView.TabTitle.Builder().setContent(name).build());
+                new QTabView.TabTitle.Builder().setContent(this.getString(name)).build());
         qTabView.setFocusable(true);
         tabLayout.addTab(qTabView);
     }
@@ -141,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void  initFruits(int id) {
         for (int i = 0; i < 15; i++) {
-            Fruit apple = new Fruit(getRandomLengthName("薯条"+id), R.drawable.display_chips);
-            fruitList.add(apple);
-            Fruit banana = new Fruit(getRandomLengthName("方便面"+id), R.drawable.display_noodle);
-            fruitList.add(banana);
-            Fruit orange = new Fruit(getRandomLengthName("农夫山泉"+id), R.drawable.display_water);
-            fruitList.add(orange);
+            MainRecyclerViewItemData apple = new MainRecyclerViewItemData(getRandomLengthName("薯条"+id), R.drawable.display_chips);
+            mainRecyclerViewItemDataList.add(apple);
+            MainRecyclerViewItemData banana = new MainRecyclerViewItemData(getRandomLengthName("方便面"+id), R.drawable.display_noodle);
+            mainRecyclerViewItemDataList.add(banana);
+            MainRecyclerViewItemData orange = new MainRecyclerViewItemData(getRandomLengthName("农夫山泉"+id), R.drawable.display_water);
+            mainRecyclerViewItemDataList.add(orange);
         }
     }
     private String getRandomLengthName(String name) {
@@ -173,19 +163,19 @@ public class MainActivity extends AppCompatActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onReceiveMsg(MessageWrap message) {
         switch (message.getMessage()) {
-            case "tv_title_price":
+            case  R.id.tv_title_price:
 
                 break;
-            case  "btn_title_account":
+            case R.id.btn_title_account:
                 Log.d("nimei","点到了");
                 final  AccountDialogFragment accountDialogFragment = new AccountDialogFragment();
                 accountDialogFragment.show(getSupportFragmentManager(), "");
                 break;
-            case "btn_title_cart" :
+            case R.id.btn_title_cart :
                 final CartDialogFragment niceDialogFragment = new CartDialogFragment();
                 niceDialogFragment.show(getSupportFragmentManager(), "");
                 break;
-            case "btn_title_order":
+            case R.id.btn_title_order:
                 final OrderHistoryDialogFragment orderHistoryDialogFragment = new OrderHistoryDialogFragment();
                 orderHistoryDialogFragment.show(getSupportFragmentManager(), "");
                 Log.d("nimei","点到了");

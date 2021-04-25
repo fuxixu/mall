@@ -49,28 +49,33 @@ public class TitleLayout extends LinearLayout  implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_title_price:
-                MessageWrap messageWrap = new MessageWrap("tv_title_price");
-                EventBus.getDefault().post(messageWrap);
-                break;
-            case    R.id.btn_title_account:
-                MessageWrap messageWrap1 = new MessageWrap("btn_title_account");
-                EventBus.getDefault().post(messageWrap1);
-                Log.d("nimei","点到了");
-                break;
-            case R.id. btn_title_cart:
-                Log.d("nimei","点到了btn_title_cart");
-                MessageWrap messageWrap2 = new MessageWrap("btn_title_cart");
-                EventBus.getDefault().post(messageWrap2);
 
-                break;
-            case R.id.btn_title_order:
-                MessageWrap messageWrap3 = new MessageWrap("btn_title_order");
-                EventBus.getDefault().post(messageWrap3);
-                Log.d("nimei","点到了");
-                break;
-        }
+        MessageWrap messageWrap = new MessageWrap(v.getId());
+              EventBus.getDefault().post(messageWrap);
+
     }
+//        switch (v.getId()) {
+//            case R.id.tv_title_price:
+//                MessageWrap messageWrap = new MessageWrap("tv_title_price");
+//                EventBus.getDefault().post(messageWrap);
+//                break;
+//            case    R.id.btn_title_account:
+//                MessageWrap messageWrap1 = new MessageWrap("btn_title_account");
+//                EventBus.getDefault().post(messageWrap1);
+//                Log.d("nimei","点到了");
+//                break;
+//            case R.id. btn_title_cart:
+//                Log.d("nimei","点到了btn_title_cart");
+//                MessageWrap messageWrap2 = new MessageWrap("btn_title_cart");
+//                EventBus.getDefault().post(messageWrap2);
+//
+//                break;
+//            case R.id.btn_title_order:
+//                MessageWrap messageWrap3 = new MessageWrap("btn_title_order");
+//                EventBus.getDefault().post(messageWrap3);
+//                Log.d("nimei","点到了");
+//                break;
+//        }
+//    }
 
 }

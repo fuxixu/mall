@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
+import com.example.mall.model.bean.MainRecyclerViewItemData;
 
 import java.util.List;
 
@@ -18,10 +19,10 @@ import java.util.List;
  * Create by hsw
  * on 2021/4/21.
  */
-public class LinerRecycleAdapter extends RecyclerView.Adapter<LinerRecycleAdapter.ViewHolder> {
-    private List<Fruit> mFruitList;
-    public LinerRecycleAdapter(List<Fruit> fruitList) {
-        mFruitList = fruitList;
+public class MainActivityRecyclerViewAdpter extends RecyclerView.Adapter<MainActivityRecyclerViewAdpter.ViewHolder> {
+    private List<MainRecyclerViewItemData> mMainRecyclerViewItemDataList;
+    public MainActivityRecyclerViewAdpter(List<MainRecyclerViewItemData> mainRecyclerViewItemDataList) {
+        mMainRecyclerViewItemDataList = mainRecyclerViewItemDataList;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,16 +50,16 @@ public class LinerRecycleAdapter extends RecyclerView.Adapter<LinerRecycleAdapte
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Fruit fruit = mFruitList.get(position);
-                Toast.makeText(v.getContext(), "you clicked view " + fruit.getName(), Toast.LENGTH_SHORT).show();
+                MainRecyclerViewItemData mainRecyclerViewItemData = mMainRecyclerViewItemDataList.get(position);
+                Toast.makeText(v.getContext(), "you clicked view " + mainRecyclerViewItemData.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         holder.fruitImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Fruit fruit = mFruitList.get(position);
-                Toast.makeText(v.getContext(), "you clicked image " + fruit.getName(), Toast.LENGTH_SHORT).show();
+                MainRecyclerViewItemData mainRecyclerViewItemData = mMainRecyclerViewItemDataList.get(position);
+                Toast.makeText(v.getContext(), "you clicked image " + mainRecyclerViewItemData.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         return holder;
@@ -67,9 +68,9 @@ public class LinerRecycleAdapter extends RecyclerView.Adapter<LinerRecycleAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Fruit fruit = mFruitList.get(position);
-        holder.fruitImage.setImageResource(fruit.getImageId());
-        holder.product_name.setText(fruit.getName());
+        MainRecyclerViewItemData mainRecyclerViewItemData = mMainRecyclerViewItemDataList.get(position);
+        holder.fruitImage.setImageResource(mainRecyclerViewItemData.getImageId());
+        holder.product_name.setText(mainRecyclerViewItemData.getName());
         holder.product_param.setText("550ml*1瓶");
     }
 
@@ -77,6 +78,6 @@ public class LinerRecycleAdapter extends RecyclerView.Adapter<LinerRecycleAdapte
 
     @Override
     public int getItemCount() {
-        return mFruitList.size();
+        return mMainRecyclerViewItemDataList.size();
     }
 }
