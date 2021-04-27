@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/activity_background">
-    <com.example.mall.ui.TitleLayout
+    <com.example.mall.ui.customview.TitleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -20,18 +20,21 @@
 
         <q.rorbin.verticaltablayout.VerticalTabLayout
             android:id="@+id/tab_layout"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            app:indicator_color="#FFFFFF"
-            app:indicator_gravity="fill"
+            android:textColor="@color/bg_gray"
             app:tab_height="56dp"
-            app:tab_mode="scrollable" />
+            app:tab_mode="scrollable"
+            app:indicator_width="0dp"
+            app:tabSelectedTextColor="#FFFFFF"
+            />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:background="@drawable/recyclerview_bg"
             />
 
     </LinearLayout>

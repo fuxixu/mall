@@ -1,12 +1,12 @@
 package com.example.mall.model.bean;
 
-public class MainRecyclerViewItemData {
+public class MActivityData {
 
     private String name;
 
     private int imageId;
 
-    public MainRecyclerViewItemData(String name, int imageId) {
+    public MActivityData(String name, int imageId) {
         this.name = name;
         this.imageId = imageId;
     }

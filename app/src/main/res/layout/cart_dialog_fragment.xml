@@ -20,7 +20,7 @@
         android:layout_weight="1"
         >
         <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/cart_ryv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
             android:background="@drawable/cart_recycler"/>
@@ -32,6 +32,8 @@
         android:layout_height="wrap_content"
         android:gravity="bottom"
         android:orientation="vertical">
+
+
         <include layout="@layout/cart_buttom_title"/>
     </LinearLayout>
 

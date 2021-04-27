@@ -1,4 +1,4 @@
-package com.example.mall.ui;
+package com.example.mall.ui.customview;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mall.R;
+import com.example.mall.ui.BaseActivity;
 import com.example.mall.util.MessageWrap;
 
 import org.greenrobot.eventbus.EventBus;

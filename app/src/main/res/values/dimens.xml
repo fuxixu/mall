@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2013, The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <dimen name="dimenx_0.5dp">0.5dp</dimen>
+    <dimen name="dimenx_1dp">1dp</dimen>
+    <dimen name="dimenx_1.5dp">1.5dp</dimen>
+    <dimen name="dimenx_2dp">2dp</dimen>
+    <dimen name="dimenx_2.5dp">2.5dp</dimen>
+    <dimen name="dimenx_3dp">3dp</dimen>
+    <dimen name="dimenx_3.5dp">3.5dp</dimen>
+    <dimen name="dimenx_4dp">4dp</dimen>
+    <dimen name="dimenx_4.5dp">4.5dp</dimen>
+    <dimen name="dimenx_5dp">5dp</dimen>
+    <dimen name="dimenx_5.5dp">5.5dp</dimen>
+    <dimen name="dimenx_6dp">6dp</dimen>
+    <dimen name="dimenx_6.5dp">6.5dp</dimen>
+    <dimen name="dimenx_7dp">7dp</dimen>
+    <dimen name="dimenx_7.5dp">7.5dp</dimen>
+    <dimen name="dimenx_8dp">8dp</dimen>
+    <dimen name="dimenx_8.5dp">8.5dp</dimen>
+    <dimen name="dimenx_9dp">9dp</dimen>
+    <dimen name="dimenx_9.5dp">9dp</dimen>
+    <dimen name="dimenx_10dp">10dp</dimen>
+    <dimen name="dimenx_10.5dp">10.5dp</dimen>
+    <dimen name="dimenx_11dp">11dp</dimen>
+    <dimen name="dimenx_11.5dp">11.5dp</dimen>
+    <dimen name="dimenx_12dp">12dp</dimen>
+    <dimen name="dimenx_12.5dp">12.5dp</dimen>
+    <dimen name="dimenx_13dp">13dp</dimen>
+    <dimen name="dimenx_13.5dp">13.5dp</dimen>
+    <dimen name="dimenx_14dp">14dp</dimen>
+    <dimen name="dimenx_14.5dp">14.5dp</dimen>
+    <dimen name="dimenx_15dp">15dp</dimen>
+    <dimen name="dimenx_15.5dp">15.5dp</dimen>
+    <dimen name="dimenx_16dp">16dp</dimen>
+    <dimen name="dimenx_16.5dp">16.5dp</dimen>
+    <dimen name="dimenx_17dp">17dp</dimen>
+    <dimen name="dimenx_17.5dp">17.5dp</dimen>
+    <dimen name="dimenx_18dp">18dp</dimen>
+    <dimen name="dimenx_18.5dp">18.5dp</dimen>
+    <dimen name="dimenx_19dp">19dp</dimen>
+    <dimen name="dimenx_19.5dp">19.5dp</dimen>
+    <dimen name="dimenx_20dp">20dp</dimen>
+    <dimen name="dimenx_20.5dp">20.5dp</dimen>
+    <dimen name="dimenx_21dp">21dp</dimen>
+    <dimen name="dimenx_21.5dp">21.5dp</dimen>
+    <dimen name="dimenx_22dp">22dp</dimen>
+    <dimen name="dimenx_22.5dp">22.5dp</dimen>
+    <dimen name="dimenx_23dp">23dp</dimen>
+    <dimen name="dimenx_23.5dp">23.5dp</dimen>
+    <dimen name="dimenx_24dp">24dp</dimen>
+    <dimen name="dimenx_24.5dp">24.5dp</dimen>
+    <dimen name="dimenx_25dp">25dp</dimen>
+    <dimen name="dimenx_25.5dp">25.5dp</dimen>
+    <dimen name="dimenx_26dp">26dp</dimen>
+    <dimen name="dimenx_26.5dp">26.5dp</dimen>
+    <dimen name="dimenx_27dp">27dp</dimen>
+    <dimen name="dimenx_27.5dp">27.5dp</dimen>
+    <dimen name="dimenx_28dp">28dp</dimen>
+    <dimen name="dimenx_28.5dp">28.5dp</dimen>
+    <dimen name="dimenx_29dp">29dp</dimen>
+    <dimen name="dimenx_29.5dp">29.5dp</dimen>
+    <dimen name="dimenx_30dp">30dp</dimen>
+    <dimen name="dimenx_30.5dp">30.5dp</dimen>
+    <dimen name="dimenx_31dp">31dp</dimen>
+    <dimen name="dimenx_31.5dp">31.5dp</dimen>
+    <dimen name="dimenx_32dp">32dp</dimen>
+    <dimen name="dimenx_32.5dp">32.5dp</dimen>
+    <dimen name="dimenx_33dp">33dp</dimen>
+    <dimen name="dimenx_33.5dp">33.5dp</dimen>
+    <dimen name="dimenx_34dp">34dp</dimen>
+    <dimen name="dimenx_34.5dp">34.5dp</dimen>
+    <dimen name="dimenx_35dp">35dp</dimen>
+    <dimen name="dimenx_35.5dp">35.5dp</dimen>
+    <dimen name="dimenx_36dp">36dp</dimen>
+    <dimen name="dimenx_36.5dp">36.5dp</dimen>
+    <dimen name="dimenx_37dp">37dp</dimen>
+    <dimen name="dimenx_37.5dp">37.5dp</dimen>
+    <dimen name="dimenx_38dp">38dp</dimen>
+    <dimen name="dimenx_38.5dp">38.5dp</dimen>
+    <dimen name="dimenx_39dp">39dp</dimen>
+    <dimen name="dimenx_39.5dp">39.5dp</dimen>
+    <dimen name="dimenx_40.5dp">40.5dp</dimen>
+    <dimen name="dimenx_41dp">41dp</dimen>
+    <dimen name="dimenx_41.5dp">41.5dp</dimen>
+    <dimen name="dimenx_42dp">42dp</dimen>
+    <dimen name="dimenx_42.5dp">42.5dp</dimen>
+    <dimen name="dimenx_43dp">43dp</dimen>
+    <dimen name="dimenx_43.5dp">43.5dp</dimen>
+    <dimen name="dimenx_44dp">44dp</dimen>
+    <dimen name="dimenx_44.5dp">44.5dp</dimen>
+    <dimen name="dimenx_45dp">45dp</dimen>
+    <dimen name="dimenx_45.5dp">45.5dp</dimen>
+    <dimen name="dimenx_46dp">46dp</dimen>
+    <dimen name="dimenx_46.5dp">46.5dp</dimen>
+    <dimen name="dimenx_47dp">47dp</dimen>
+    <dimen name="dimenx_47.5dp">47.5dp</dimen>
+    <dimen name="dimenx_48dp">48dp</dimen>
+    <dimen name="dimenx_48.5dp">48.5dp</dimen>
+    <dimen name="dimenx_49dp">49dp</dimen>
+    <dimen name="dimenx_49.5dp">49.5dp</dimen>
+    <dimen name="dimenx_50.5dp">50.5dp</dimen>
+    <dimen name="dimenx_51dp">51dp</dimen>
+    <dimen name="dimenx_60dp">60dp</dimen>
+    <dimen name="dimenx_65dp">65dp</dimen>
+    <dimen name="dimenx_70dp">70dp</dimen>
+    <dimen name="dimenx_75dp">75dp</dimen>
+    <dimen name="dimenx_80dp">80dp</dimen>
+    <dimen name="dimenx_85dp">85dp</dimen>
+    <dimen name="dimenx_90dp">90dp</dimen>
+    <dimen name="dimenx_95dp">95dp</dimen>
+    <dimen name="dimenx_100dp">100dp</dimen>
+    <dimen name="dimenx_105dp">105dp</dimen>
+    <dimen name="dimenx_110dp">110dp</dimen>
+    <dimen name="dimenx_115dp">115dp</dimen>
+    <dimen name="dimenx_120dp">120dp</dimen>
+    <dimen name="dimenx_125p">125dp</dimen>
+    <dimen name="dimenx_130dp">130dp</dimen>
+    <dimen name="dimenx_135">135dp</dimen>
+    <dimen name="dimenx_140dp">140dp</dimen>
+    <dimen name="dimenx_145dp">145dp</dimen>
+    <dimen name="dimenx_150dp">150dp</dimen>
+    <dimen name="dimenx_155dp">155dp</dimen>
+    <dimen name="dimenx_160dp">160dp</dimen>
+
+
+</resources>

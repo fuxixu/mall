@@ -5,14 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 
-import com.example.mall.model.bean.MainRecyclerViewItemData;
-import com.example.mall.adapter.MainActivityRecyclerViewAdpter;
+import com.example.mall.adapter.MyTabAdapter;
+import com.example.mall.model.bean.MActivityData;
+import com.example.mall.adapter.MActivityAdapter;
 import com.example.mall.ui.AccountDialogFragment;
 import com.example.mall.ui.CartDialogFragment;
 import com.example.mall.ui.OrderHistoryDialogFragment;
+import com.example.mall.ui.customview.GridSpacingItemDecoration;
 import com.example.mall.util.MessageWrap;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,8 +33,10 @@ import q.rorbin.verticaltablayout.widget.TabView;
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     VerticalTabLayout tabLayout;
-    private List<MainRecyclerViewItemData> mainRecyclerViewItemDataList = new ArrayList<MainRecyclerViewItemData>();
-    MainActivityRecyclerViewAdpter adapter;
+    private List<MActivityData> MActivityDataList = new ArrayList<MActivityData>();
+    MActivityAdapter adapter;
+
+    String tag = "测试按键";
 
     /**
      * 当前选中的级别
@@ -47,22 +53,29 @@ public class MainActivity extends AppCompatActivity {
         if (actionbar != null) {
             actionbar.hide();
         }
+
         initFruits(currentLevel);
         initView();
-        initData();
-        setRecyclerView();
+        initTablayout();
+
     }
 
     private void initView() {
         recyclerView = findViewById(R.id.recycler_view);
+        setRecyclerView();
+    }
+
+    private void initTablayout() {
+
         tabLayout = findViewById(R.id.tab_layout);
-
-
         /**
          * Create by hsw
          * on 2021/4/21.
          * tabLayout子项监听
          */
+        tabLayout.setFocusable(true);
+//        tabLayout.setTabAdapter(new MyTabAdapter());
+
         tabLayout.addOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabView tab, int position) {
@@ -76,6 +89,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+            setTabItem(R.string.tab_hot_product);
+            setTabItem(R.string.tab_all_product);
+            setTabItem(R.string.tab_drinks);
+            setTabItem(R.string.tab_noodle);
+            setTabItem(R.string.tab_smoke);
+            setTabItem(R.string.tab_snacks);
+            setTabItem(R.string.tab_food);
+    }
+    /**
+     * Create by hsw
+     * on 2021/4/21.
+     * 设置tabLayout
+     */
+
+    private void setTabItem(int name) {
+
+        QTabView qTabView = new QTabView(getBaseContext())
+                .setTitle(new QTabView.TabTitle.Builder()
+                        .setContent(this.getString(name))
+                        .setTextColor(Color.WHITE, 0xBBFFFFFF)
+                        .setTextSize(20)
+                        .build());
+
+
+
+        qTabView.setFocusable(true);
+        tabLayout.addTab(qTabView);
     }
 
     /**
@@ -85,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void selectTab(int  id) {
         currentLevel = id;
-        if (mainRecyclerViewItemDataList != null) {
-            mainRecyclerViewItemDataList.clear();
+        if (MActivityDataList != null) {
+            MActivityDataList.clear();
         }
         initFruits(currentLevel);
         adapter.notifyDataSetChanged();
@@ -105,38 +145,23 @@ public class MainActivity extends AppCompatActivity {
         StaggeredGridLayoutManager layoutManager = new
                 StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MainActivityRecyclerViewAdpter(mainRecyclerViewItemDataList);
-
+        adapter = new MActivityAdapter(MActivityDataList);
         recyclerView.setAdapter(adapter);
 
-
     }
 
-    private void initData() {
-        setTabItem(R.string.tab_hot_product);
-        setTabItem(R.string.tab_all_product);
-        setTabItem(R.string.tab_drinks);
-        setTabItem(R.string.tab_noodle);
-        setTabItem(R.string.tab_smoke);
-        setTabItem(R.string.tab_snacks);
-        setTabItem(R.string.tab_food);
-    }
-    private void setTabItem(int name) {
-        QTabView qTabView = new QTabView(getBaseContext()).setTitle(
-                new QTabView.TabTitle.Builder().setContent(this.getString(name)).build());
-        qTabView.setFocusable(true);
-        tabLayout.addTab(qTabView);
-    }
+
+
 
 
     private void  initFruits(int id) {
         for (int i = 0; i < 15; i++) {
-            MainRecyclerViewItemData apple = new MainRecyclerViewItemData(getRandomLengthName("薯条"+id), R.drawable.display_chips);
-            mainRecyclerViewItemDataList.add(apple);
-            MainRecyclerViewItemData banana = new MainRecyclerViewItemData(getRandomLengthName("方便面"+id), R.drawable.display_noodle);
-            mainRecyclerViewItemDataList.add(banana);
-            MainRecyclerViewItemData orange = new MainRecyclerViewItemData(getRandomLengthName("农夫山泉"+id), R.drawable.display_water);
-            mainRecyclerViewItemDataList.add(orange);
+            MActivityData apple = new MActivityData(getRandomLengthName("薯条"+id), R.drawable.display_chips);
+            MActivityDataList.add(apple);
+            MActivityData banana = new MActivityData(getRandomLengthName("方便面"+id), R.drawable.display_noodle);
+            MActivityDataList.add(banana);
+            MActivityData orange = new MActivityData(getRandomLengthName("农夫山泉"+id), R.drawable.display_water);
+            MActivityDataList.add(orange);
         }
     }
     private String getRandomLengthName(String name) {
@@ -168,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btn_title_account:
                 Log.d("nimei","点到了");
+
+
                 final  AccountDialogFragment accountDialogFragment = new AccountDialogFragment();
                 accountDialogFragment.show(getSupportFragmentManager(), "");
                 break;
@@ -183,4 +210,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            //模拟器测试时键盘中的的Enter键，模拟ok键（推荐TV开发中使用蓝叠模拟器）
+            case KeyEvent.KEYCODE_ENTER:
+                break;
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                Log.d(tag,"你按下中间键");
+                break;
+
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                Log.d(tag,"你按下下方键");
+                break;
+
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                Log.d(tag,"你按下左键");
+                break;
+
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+
+                Log.d(tag,"你按下右键");
+                break;
+
+            case KeyEvent.KEYCODE_DPAD_UP:
+                Log.d(tag,"你按下上方键");
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+
+    }
 }

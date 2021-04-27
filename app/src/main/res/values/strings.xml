@@ -7,4 +7,6 @@
     <string name="tab_smoke">香烟</string>
     <string name="tab_snacks">零食</string>
     <string name="tab_food">小吃</string>
+    <string name="cart_ryv_item_param">农夫山泉矿泉水550ml*1瓶</string>
+    <string name="cart_ryv_item_pric">¥2.50</string>
 </resources>

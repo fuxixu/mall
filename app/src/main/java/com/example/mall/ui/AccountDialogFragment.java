@@ -13,11 +13,20 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
+import com.example.mall.adapter.CartReViewAdapter;
+import com.example.mall.model.bean.MActivityData;
+import com.example.mall.model.bean.MCartData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountDialogFragment extends DialogFragment implements View.OnClickListener {
     private View mRootView;
+
     @Override
     public void onClick(View v) {
 
@@ -35,6 +44,13 @@ public class AccountDialogFragment extends DialogFragment implements View.OnClic
         super.onViewCreated(view, savedInstanceState);
 
     }
+
+
+
+    /**
+     * 设置弹窗的大小
+     * on 2021/4/21.
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -47,8 +63,9 @@ public class AccountDialogFragment extends DialogFragment implements View.OnClic
         if (dialog != null) {
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-            dialog.getWindow().setLayout((int) (dm.widthPixels * 0.75), (int) (dm.heightPixels * 0.8));
+            dialog.getWindow().setLayout((int) (dm.widthPixels * 0.5), (int) (dm.heightPixels * 0.5));
 
         }
     }
+
 }
