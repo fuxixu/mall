@@ -21,22 +21,41 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
-import com.example.mall.adapter.CartReViewAdapter;
-import com.example.mall.model.bean.MCartData;
+import com.example.mall.adapter.CartAdapter;
+import com.example.mall.model.bean.ProductData;
+import com.example.mall.util.MessageWrap;
+import com.example.mall.util.Size;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartDialogFragment extends DialogFragment implements View.OnClickListener {
+public class CartFragment extends DialogFragment implements View.OnClickListener {
     String tag = "diag测试按键";
     private View mRootView;
-    private List<MCartData> mCartData = new ArrayList<MCartData>();
+    private List<ProductData> ProductData = new ArrayList<ProductData>();
 
-    private    TextView cart_all_number;
+    private TextView cart_all_number;
     private TextView cart_all_price;
+
+
+    /**
+     * Create by hsw
+     * on 2021/4/26
+     * eventbus发送数据
+     */
+
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cart_pay:
+                MessageWrap messageWrap = new MessageWrap(v.getId());
+                EventBus.getDefault().post(messageWrap);
+                break;
 
+
+        }
     }
     @Nullable
     @Override
@@ -114,7 +133,7 @@ public class CartDialogFragment extends DialogFragment implements View.OnClickLi
         if (dialog != null) {
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-            dialog.getWindow().setLayout((int) (dm.widthPixels * 0.5), (int) (dm.heightPixels * 0.85));
+            dialog.getWindow().setLayout((int) (dm.widthPixels * Size.getWith()), (int) (dm.heightPixels * Size.getHight()));
 
         }
     }
@@ -130,8 +149,8 @@ public class CartDialogFragment extends DialogFragment implements View.OnClickLi
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         cart_ryv.setLayoutManager(linearLayoutManager);
-        CartReViewAdapter cartReViewAdapter = new CartReViewAdapter(mCartData);
-        cart_ryv.setAdapter(cartReViewAdapter);
+        CartAdapter cartAdapter = new CartAdapter(ProductData);
+        cart_ryv.setAdapter(cartAdapter);
     }
 
 
@@ -139,10 +158,15 @@ public class CartDialogFragment extends DialogFragment implements View.OnClickLi
         int number = 0;
         float price  = 0;
         for (int i = 0; i < 10; i++) {
-            MCartData pruduct = new MCartData(R.drawable.display_water,this.getString(R.string.cart_ryv_item_param), (float) 2.5,id+i);
+
+            String j = "农夫山泉"+id;
+            int k = R.drawable.display_water;
+            String l = "550ml*1瓶";
+            float m  = (float) 2.50;
+            ProductData pruduct = new ProductData(j,k,l,m,id+i);
             number = number + pruduct.getNumber();
             price =  pruduct.getPrice()*pruduct.getNumber();
-            mCartData.add(pruduct);
+            ProductData.add(pruduct);
 
 
         }

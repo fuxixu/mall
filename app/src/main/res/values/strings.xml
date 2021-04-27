@@ -9,4 +9,10 @@
     <string name="tab_food">小吃</string>
     <string name="cart_ryv_item_param">农夫山泉矿泉水550ml*1瓶</string>
     <string name="cart_ryv_item_pric">¥2.50</string>
+
+    <string name="order_time">订单创建时间</string>
+    <string name="order_name">商品名称</string>
+    <string name="order_all_price">总价</string>
+    <string name="order_status">配送状态</string>
+
 </resources>

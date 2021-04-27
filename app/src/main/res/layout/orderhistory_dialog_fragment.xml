@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/order_bg">
+    android:background="@drawable/order_bg"
+   >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,9 +24,66 @@
             android:layout_marginTop="15.5dp"
            android:layout_gravity="center"
             android:text="历史订单"
-            android:textColor="#666666"
-            android:textSize="25sp" />
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            />
     </LinearLayout>
+
+<!--    设置左右两边的距离-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dimenx_50.5dp"
+        android:layout_marginRight="@dimen/dimenx_50.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/order_time"/>
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/order_name"/>
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/order_all_price"/>
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/order_status"/>
+
+    </LinearLayout>
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/order_linear">
+</ImageView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/order_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
 
 
 

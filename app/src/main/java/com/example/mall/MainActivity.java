@@ -10,13 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.example.mall.adapter.MyTabAdapter;
-import com.example.mall.model.bean.MActivityData;
+import com.example.mall.model.bean.ProductData;
 import com.example.mall.adapter.MActivityAdapter;
-import com.example.mall.ui.AccountDialogFragment;
-import com.example.mall.ui.CartDialogFragment;
-import com.example.mall.ui.OrderHistoryDialogFragment;
-import com.example.mall.ui.customview.GridSpacingItemDecoration;
+import com.example.mall.present.FragmentManager;
+import com.example.mall.ui.PayFragment;
+import com.example.mall.ui.CartFragment;
+import com.example.mall.ui.OrderFragment;
 import com.example.mall.util.MessageWrap;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,12 +30,16 @@ import q.rorbin.verticaltablayout.widget.QTabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
-    VerticalTabLayout tabLayout;
-    private List<MActivityData> MActivityDataList = new ArrayList<MActivityData>();
-    MActivityAdapter adapter;
-
     String tag = "测试按键";
+
+    private RecyclerView recyclerView;
+   private VerticalTabLayout tabLayout;
+    private List<ProductData> ProductDataList = new ArrayList<ProductData>();
+    private  MActivityAdapter adapter;
+   private  CartFragment cartFragment;
+    private PayFragment payFragment;
+    private OrderFragment orderFragment;
+
 
     /**
      * 当前选中的级别
@@ -125,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void selectTab(int  id) {
         currentLevel = id;
-        if (MActivityDataList != null) {
-            MActivityDataList.clear();
+        if (ProductDataList != null) {
+            ProductDataList.clear();
         }
         initFruits(currentLevel);
         adapter.notifyDataSetChanged();
@@ -145,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         StaggeredGridLayoutManager layoutManager = new
                 StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MActivityAdapter(MActivityDataList);
+        adapter = new MActivityAdapter(ProductDataList);
         recyclerView.setAdapter(adapter);
 
     }
@@ -156,16 +159,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void  initFruits(int id) {
         for (int i = 0; i < 15; i++) {
-            MActivityData apple = new MActivityData(getRandomLengthName("薯条"+id), R.drawable.display_chips);
-            MActivityDataList.add(apple);
-            MActivityData banana = new MActivityData(getRandomLengthName("方便面"+id), R.drawable.display_noodle);
-            MActivityDataList.add(banana);
-            MActivityData orange = new MActivityData(getRandomLengthName("农夫山泉"+id), R.drawable.display_water);
-            MActivityDataList.add(orange);
+
+            String a = "薯条"+id;
+            int b = R.drawable.display_chips;
+            String c = "550ml*1瓶";
+            float d = (float) 2.50;
+            ProductData apple = new ProductData(a,b,c,d);
+            ProductDataList.add(apple);
+
+            String e = "方便面"+id;
+            int f = R.drawable.display_noodle;
+            String g = "550ml*1瓶";
+            float h = (float) 2.50;
+            ProductData banana = new ProductData(e,f,g,h);
+            ProductDataList.add(banana);
+
+            String j = "农夫山泉"+id;
+            int k = R.drawable.display_water;
+            String l = "550ml*1瓶";
+            float m  = (float) 2.50;
+            ProductData orange = new ProductData(j,k,l,m);
+            ProductDataList.add(orange);
+
         }
-    }
-    private String getRandomLengthName(String name) {
-        return name;
     }
 
     @Override
@@ -183,32 +199,53 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Create by hsw
      * on 2021/4/21.
-     * 监听标题栏弹出dialogfragment
+     *
+     * EventBUs接收信息
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onReceiveMsg(MessageWrap message) {
         switch (message.getMessage()) {
+            case  R.id.pay_succeed:
+                Log.d("nimei","点到了pay");
+                payFragment.dismiss();
+                break;
             case  R.id.tv_title_price:
+
+                break;
+
+            case R.id.cart_pay:
+                Log.d("nimei","点到了");
+                cartFragment.dismiss();
+                payFragment = new PayFragment();
+                payFragment.show(getSupportFragmentManager(), "");
+
 
                 break;
             case R.id.btn_title_account:
                 Log.d("nimei","点到了");
 
 
-                final  AccountDialogFragment accountDialogFragment = new AccountDialogFragment();
-                accountDialogFragment.show(getSupportFragmentManager(), "");
+//                final PayFragment payFragment = new PayFragment();
+//                payFragment.show(getSupportFragmentManager(), "");
                 break;
             case R.id.btn_title_cart :
-                final CartDialogFragment niceDialogFragment = new CartDialogFragment();
-                niceDialogFragment.show(getSupportFragmentManager(), "");
+                 cartFragment = new CartFragment();
+                cartFragment.show(getSupportFragmentManager(), "");
                 break;
             case R.id.btn_title_order:
-                final OrderHistoryDialogFragment orderHistoryDialogFragment = new OrderHistoryDialogFragment();
-                orderHistoryDialogFragment.show(getSupportFragmentManager(), "");
+                orderFragment = new OrderFragment();
+                orderFragment.show(getSupportFragmentManager(), "");
                 Log.d("nimei","点到了");
                 break;
+
         }
     }
+    /**
+     * Create by hsw
+     * on 2021/4/27.
+     *
+     * 监听遥控器上下左右按键
+     */
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

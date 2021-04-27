@@ -6,14 +6,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
-import com.example.mall.model.bean.MActivityData;
-import com.example.mall.model.bean.MCartData;
+import com.example.mall.model.bean.ProductData;
 
 import java.util.List;
 
@@ -21,10 +19,10 @@ import java.util.List;
  * Create by hsw
  * on 2021/4/21.
  */
-public class CartReViewAdapter extends RecyclerView.Adapter<CartReViewAdapter.ViewHolder> {
-    private List<MCartData> mCartData;
-    public CartReViewAdapter(List<MCartData> mCartData) {
-        this.mCartData = mCartData;
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+    private List<ProductData> ProductData;
+    public CartAdapter(List<ProductData> ProductData) {
+        this.ProductData = ProductData;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -72,7 +70,7 @@ public class CartReViewAdapter extends RecyclerView.Adapter<CartReViewAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        MCartData data = mCartData.get(position);
+        ProductData data = ProductData.get(position);
         holder.cart_ryv_item_image.setImageResource(data.getImageId());
         holder.cart_ryv_item_price.setText("¥"+Float.toString(data.getPrice()));
         holder.cart_ryv_item_param.setText(data.getParam());
@@ -88,7 +86,7 @@ public class CartReViewAdapter extends RecyclerView.Adapter<CartReViewAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return mCartData.size();
+        return ProductData.size();
     }
 
 

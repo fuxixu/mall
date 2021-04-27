@@ -52,7 +52,7 @@
         android:layout_gravity="right|center"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:background="@drawable/bt_title_selector_account"
+        android:background="@drawable/selector_btn"
         />
 
 </FrameLayout>

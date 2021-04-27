@@ -15,27 +15,44 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.mall.R;
+import com.example.mall.util.MessageWrap;
 
-public class OrderHistoryDialogFragment extends DialogFragment implements View.OnClickListener {
+import org.greenrobot.eventbus.EventBus;
+
+public class PayFragment extends DialogFragment implements View.OnClickListener {
     private View mRootView;
+    private Button pay_succeed;
+    /**
+     * Create by hsw
+     * on 2021/4/26
+     * eventbus发送数据
+     */
     @Override
     public void onClick(View v) {
-
+        MessageWrap messageWrap = new MessageWrap(v.getId());
+        EventBus.getDefault().post(messageWrap);
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.orderhistory_dialog_fragment, null);
+        mRootView = inflater.inflate(R.layout.pay_dialog_fragment, null);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         return mRootView;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        pay_succeed = view.findViewById(R.id.pay_succeed);
+        pay_succeed.setOnClickListener(this);
     }
 
+
+
+    /**
+     * 设置弹窗的大小
+     * on 2021/4/21.
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -48,8 +65,9 @@ public class OrderHistoryDialogFragment extends DialogFragment implements View.O
         if (dialog != null) {
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-            dialog.getWindow().setLayout((int) (dm.widthPixels * 0.75), (int) (dm.heightPixels * 0.8));
+            dialog.getWindow().setLayout((int) (dm.widthPixels * 0.5), (int) (dm.heightPixels * 0.5));
 
         }
-        }
+    }
+
 }

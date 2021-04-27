@@ -25,13 +25,15 @@
         android:textSize="35sp" />
 
     <Button
-        android:id="@+id/btn_title_account"
+        android:id="@+id/pay_succeed"
         android:layout_width="150sp"
         android:layout_height="50sp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/bt_title_account"
         android:text="确认"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/selector_btn"/>
 
 </LinearLayout>
