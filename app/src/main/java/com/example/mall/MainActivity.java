@@ -10,9 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.example.mall.model.bean.ProductData;
+import com.example.mall.contract.IProduct;
+import com.example.mall.model.bean.ProductInfo;
 import com.example.mall.adapter.MActivityAdapter;
-import com.example.mall.present.FragmentManager;
+import com.example.mall.model.db.DbCart;
 import com.example.mall.ui.PayFragment;
 import com.example.mall.ui.CartFragment;
 import com.example.mall.ui.OrderFragment;
@@ -29,17 +30,16 @@ import q.rorbin.verticaltablayout.VerticalTabLayout;
 import q.rorbin.verticaltablayout.widget.QTabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements IProduct {
     String tag = "测试按键";
 
     private RecyclerView recyclerView;
    private VerticalTabLayout tabLayout;
-    private List<ProductData> ProductDataList = new ArrayList<ProductData>();
+    private List<ProductInfo> productInfoList = new ArrayList<ProductInfo>();
     private  MActivityAdapter adapter;
    private  CartFragment cartFragment;
     private PayFragment payFragment;
     private OrderFragment orderFragment;
-
 
     /**
      * 当前选中的级别
@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         initFruits(currentLevel);
         initView();
         initTablayout();
+
+      DbCart.initDbcat(this);
 
     }
 
@@ -124,16 +126,17 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Create by hsw
      * on 2021/4/21.
+     * tabLayout切换fragment
      * tablayout子项选择判断
+     * 刷新适配器
      */
     private void selectTab(int  id) {
         currentLevel = id;
-        if (ProductDataList != null) {
-            ProductDataList.clear();
+        if (productInfoList != null) {
+            productInfoList.clear();
         }
         initFruits(currentLevel);
-        adapter.notifyDataSetChanged();
-
+        adapter.notifyDataSetChanged();//
 
     }
 
@@ -148,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         StaggeredGridLayoutManager layoutManager = new
                 StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MActivityAdapter(ProductDataList);
+        adapter = new MActivityAdapter(productInfoList,this);
         recyclerView.setAdapter(adapter);
 
     }
@@ -164,22 +167,22 @@ public class MainActivity extends AppCompatActivity {
             int b = R.drawable.display_chips;
             String c = "550ml*1瓶";
             float d = (float) 2.50;
-            ProductData apple = new ProductData(a,b,c,d);
-            ProductDataList.add(apple);
+            ProductInfo apple = new ProductInfo(a,b,c,d);
+            productInfoList.add(apple);
 
             String e = "方便面"+id;
             int f = R.drawable.display_noodle;
             String g = "550ml*1瓶";
             float h = (float) 2.50;
-            ProductData banana = new ProductData(e,f,g,h);
-            ProductDataList.add(banana);
+            ProductInfo banana = new ProductInfo(e,f,g,h);
+            productInfoList.add(banana);
 
             String j = "农夫山泉"+id;
             int k = R.drawable.display_water;
             String l = "550ml*1瓶";
             float m  = (float) 2.50;
-            ProductData orange = new ProductData(j,k,l,m);
-            ProductDataList.add(orange);
+            ProductInfo orange = new ProductInfo(j,k,l,m);
+            productInfoList.add(orange);
 
         }
     }
@@ -216,14 +219,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.cart_pay:
                 Log.d("nimei","点到了");
                 cartFragment.dismiss();
+
                 payFragment = new PayFragment();
                 payFragment.show(getSupportFragmentManager(), "");
 
+                DbCart.getInstance().deleteAll();
 
                 break;
             case R.id.btn_title_account:
                 Log.d("nimei","点到了");
-
 
 //                final PayFragment payFragment = new PayFragment();
 //                payFragment.show(getSupportFragmentManager(), "");
@@ -276,5 +280,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
 
+    }
+
+    @Override
+    public void inSert(ProductInfo info) {
+        DbCart.getInstance().insert(info);
     }
 }

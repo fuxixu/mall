@@ -1,9 +1,18 @@
 plugins {
     id 'com.android.application'
+    id  'org.greenrobot.greendao'
 }
-
+//apply plugin: 'com.android.application'
+//apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
+
+    greendao {
+        schemaVersion 1 //当前数据库版本
+        daoPackage 'com.example.mall.model.dao'// 设置DaoMaster、DaoSession、Dao   一般包名+文件夹名mallmall  com\example\mall\model\dao
+        targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录   文件生成的目录，相当于父级目录
+    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -33,12 +42,7 @@ android {
 
 
 
-apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao' // apply plugin
-greendao {
-    schemaVersion 1 //当前数据库版本
 
-}
 
 dependencies {
 
@@ -56,4 +60,5 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
 
     implementation 'org.greenrobot:greendao:3.3.0' // add library
+    implementation'org.greenrobot:greendao-generator:3.2.2'
 }

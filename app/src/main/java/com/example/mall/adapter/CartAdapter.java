@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
-import com.example.mall.model.bean.ProductData;
+import com.example.mall.model.bean.ProductInfo;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ import java.util.List;
  * on 2021/4/21.
  */
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
-    private List<ProductData> ProductData;
-    public CartAdapter(List<ProductData> ProductData) {
-        this.ProductData = ProductData;
+    private List<ProductInfo> ProductInfo;
+    public CartAdapter(List<ProductInfo> ProductInfo) {
+        this.ProductInfo = ProductInfo;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,24 +70,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        ProductData data = ProductData.get(position);
+        ProductInfo data = ProductInfo.get(position);
         holder.cart_ryv_item_image.setImageResource(data.getImageId());
         holder.cart_ryv_item_price.setText("¥"+Float.toString(data.getPrice()));
         holder.cart_ryv_item_param.setText(data.getParam());
         holder.cart_ryv_item_number.setText(""+data.getNumber());
     }
 
-    private void setSize(View view){
-
-
-    }
-
 
 
     @Override
     public int getItemCount() {
-        return ProductData.size();
+        return ProductInfo.size();
     }
+
 
 
 }

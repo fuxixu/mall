@@ -18,11 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
 import com.example.mall.adapter.CartAdapter;
-import com.example.mall.model.bean.ProductData;
+import com.example.mall.model.bean.ProductInfo;
+import com.example.mall.model.db.DbCart;
+import com.example.mall.ui.customview.ListerRecycler;
 import com.example.mall.util.MessageWrap;
 import com.example.mall.util.Size;
 
@@ -32,14 +33,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartFragment extends DialogFragment implements View.OnClickListener {
+
     String tag = "diag测试按键";
     private View mRootView;
-    private List<ProductData> ProductData = new ArrayList<ProductData>();
-
+    private List<ProductInfo> productList = new ArrayList<ProductInfo>();
     private TextView cart_all_number;
     private TextView cart_all_price;
+    private ListerRecycler cart_ryv;
+    private CartAdapter cartAdapter;
 
-
+    //判断view是否获取到焦点
+    private Boolean focusListener;
     /**
      * Create by hsw
      * on 2021/4/26
@@ -50,11 +54,10 @@ public class CartFragment extends DialogFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.cart_pay:
-                MessageWrap messageWrap = new MessageWrap(v.getId());
-                EventBus.getDefault().post(messageWrap);
+                initView();
+//                MessageWrap messageWrap = new MessageWrap(v.getId());
+//                EventBus.getDefault().post(messageWrap);
                 break;
-
-
         }
     }
     @Nullable
@@ -62,63 +65,20 @@ public class CartFragment extends DialogFragment implements View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mRootView = inflater.inflate(R.layout.cart_dialog_fragment, null);
-        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);//设置没有标题栏
         return mRootView;
-
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button cart_pay = view.findViewById(R.id.cart_pay);
         cart_all_number = view.findViewById(R.id.cart_all_number);
         cart_all_price = view.findViewById(R.id.cart_all_price);
+        Button cart_pay = view.findViewById(R.id.cart_pay);
         cart_pay.setOnClickListener(this);
+        initProduct();
         initView();
-
-        this.getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                switch (keyCode) {
-                    //模拟器测试时键盘中的的Enter键，模拟ok键（推荐TV开发中使用蓝叠模拟器）
-                    case KeyEvent.KEYCODE_ENTER:
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_CENTER:
-                        Log.d(tag, "你按下中间键");
-                        break;
-
-                    case KeyEvent.KEYCODE_DPAD_DOWN:
-                        if (event.getAction() == KeyEvent.ACTION_UP){
-                            Log.d(tag, "你按下下方键");
-                            Log.d(tag,"down--->");
-                        }
-
-                        break;
-
-                    case KeyEvent.KEYCODE_DPAD_LEFT:
-                        Log.d(tag, "你按下左键");
-                        if (event.getAction() == KeyEvent.ACTION_UP){
-                            Log.d(tag,"down--->");
-                        }
-                        break;
-
-                    case KeyEvent.KEYCODE_DPAD_RIGHT:
-                        if (event.getAction() == KeyEvent.ACTION_UP){
-                            Log.d(tag,"down--->");
-                        }
-                        Log.d(tag, "你按下右键");
-                        break;
-
-                    case KeyEvent.KEYCODE_DPAD_UP:
-                        Log.d(tag, "你按下上方键");
-                        break;
-                }
-                return false;
-            }
-        });
+        keyListener();
     }
-
-
 
 
     @Override
@@ -134,7 +94,6 @@ public class CartFragment extends DialogFragment implements View.OnClickListener
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
             dialog.getWindow().setLayout((int) (dm.widthPixels * Size.getWith()), (int) (dm.heightPixels * Size.getHight()));
-
         }
     }
     /**
@@ -144,38 +103,90 @@ public class CartFragment extends DialogFragment implements View.OnClickListener
      */
 
     private void  initView(){
-        initProduct(1);
-        RecyclerView cart_ryv = mRootView.findViewById(R.id.cart_ryv);
-
+        cart_ryv = mRootView.findViewById(R.id.cart_ryv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         cart_ryv.setLayoutManager(linearLayoutManager);
-        CartAdapter cartAdapter = new CartAdapter(ProductData);
+
+            cartAdapter = new CartAdapter(productList);
         cart_ryv.setAdapter(cartAdapter);
     }
 
 
-    private void  initProduct(int id) {
+    /**
+     * Create by hsw
+     * on 2021/4/26
+     * 适配器数据
+     */
+    private void  initProduct() {
+        productList.clear();
+        productList = DbCart.getInstance().searchAll();
         int number = 0;
-        float price  = 0;
-        for (int i = 0; i < 10; i++) {
-
-            String j = "农夫山泉"+id;
-            int k = R.drawable.display_water;
-            String l = "550ml*1瓶";
-            float m  = (float) 2.50;
-            ProductData pruduct = new ProductData(j,k,l,m,id+i);
-            number = number + pruduct.getNumber();
-            price =  pruduct.getPrice()*pruduct.getNumber();
-            ProductData.add(pruduct);
-
-
+        float price = 0;
+        // 增强型for循环遍历
+        for(ProductInfo value:productList){
+            float a ;
+            a = value.getPrice()*value.getNumber();
+            price =price+a;
+            number = number+value.getNumber();
         }
         cart_all_number.setText(String.valueOf(number));
         cart_all_price.setText("¥"+String.valueOf(price));
-
-
     }
 
+    /**
+     * Create by hsw
+     * on 2021/4/26
+     * 遥控器按键监听
+     */
+    private void keyListener(){
+        this.getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                switch (keyCode) {
+                    //模拟器测试时键盘中的的Enter键，模拟ok键（推荐TV开发中使用蓝叠模拟器）
+                    //case KeyEvent.KEYCODE_ENTER:
+                    // case KeyEvent.KEYCODE_DPAD_CENTER:
+                    // case KeyEvent.KEYCODE_DPAD_DOWN:
+                    // case KeyEvent.KEYCODE_DPAD_UP:  //下方键
+                    case KeyEvent.KEYCODE_DPAD_LEFT:  //左键
+                        //条件判断  松开按键   返回-1；
+                        if (event.getAction() == KeyEvent.ACTION_UP && cart_ryv.getPosition()!=-1 ){
+                            subOne();
+                        }
+                        break;
 
+                    case KeyEvent.KEYCODE_DPAD_RIGHT:  //右键
+                        //条件判断  松开按键   recyclerview失去焦点返回-1；
+                        if (event.getAction() == KeyEvent.ACTION_UP&& cart_ryv.getPosition()!=-1 ){
+                            addOne();
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
+    }
 
+    private void subOne(){
+        int a = DbCart.getInstance().subOne(productList.get(cart_ryv.getPosition()));//减少数据库的数量
+            notifiyAdapter();
+    }
+
+    private void addOne(){
+        int a = DbCart.getInstance().addOne(productList.get(cart_ryv.getPosition()));//增加数据库的数量
+            notifiyAdapter();
+    }
+
+    /**
+     * Create by hsw
+     * on 2021/4/26
+     * 数据库数量改变
+     * 刷新适配器
+     */
+      private void notifiyAdapter(){
+           initProduct();
+           initView();
+           //initView();
+          //cartAdapter.notifyDataSetChanged();
+
+       }
 }

@@ -1,6 +1,5 @@
 package com.example.mall.adapter;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
-import com.example.mall.model.bean.ProductData;
+import com.example.mall.contract.IProduct;
+import com.example.mall.model.bean.ProductInfo;
 
 import java.util.List;
 
@@ -21,10 +21,15 @@ import java.util.List;
  * on 2021/4/21.
  */
 public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.ViewHolder> {
-    private List<ProductData> mProductDataList;
-    public MActivityAdapter(List<ProductData> ProductDataList) {
-        mProductDataList = ProductDataList;
+    private List<ProductInfo> mProductInfoList;
+
+    private IProduct person;
+    public MActivityAdapter(List<ProductInfo> productInfoList, IProduct person) {
+        mProductInfoList = productInfoList;
+        this.person = person;
     }
+
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         View fruitView;
@@ -47,20 +52,23 @@ public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.View
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
         view.setFocusable(true);
         final ViewHolder holder = new ViewHolder(view);
+
+
         holder.fruitView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                ProductData ProductData = mProductDataList.get(position);
-                Toast.makeText(v.getContext(), "you clicked view " + ProductData.getName(), Toast.LENGTH_SHORT).show();
+                ProductInfo productInfo = mProductInfoList.get(position);
+                Toast.makeText(v.getContext(), "you clicked view " + productInfo.getName(), Toast.LENGTH_SHORT).show();
+                person.inSert(productInfo);
             }
         });
         holder.fruitImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                ProductData ProductData = mProductDataList.get(position);
-                Toast.makeText(v.getContext(), "you clicked image " + ProductData.getName(), Toast.LENGTH_SHORT).show();
+                ProductInfo ProductInfo = mProductInfoList.get(position);
+                Toast.makeText(v.getContext(), "you clicked image " + ProductInfo.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         return holder;
@@ -68,10 +76,9 @@ public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        ProductData ProductData = mProductDataList.get(position);
-        holder.fruitImage.setImageResource(ProductData.getImageId());
-        holder.product_name.setText(ProductData.getName());
+        ProductInfo ProductInfo = mProductInfoList.get(position);
+        holder.fruitImage.setImageResource(ProductInfo.getImageId());
+        holder.product_name.setText(ProductInfo.getName());
         holder.product_param.setText("550ml*1瓶");
     }
 
@@ -79,7 +86,7 @@ public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.View
 
     @Override
     public int getItemCount() {
-        return mProductDataList.size();
+        return mProductInfoList.size();
     }
 
 

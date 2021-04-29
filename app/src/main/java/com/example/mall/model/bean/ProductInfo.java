@@ -1,29 +1,48 @@
 package com.example.mall.model.bean;
 
-public class ProductData {
-    private float price;
-    private String param;
-    private int imageId;
-    private int number;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
 
-
+@Entity
+public class ProductInfo {
     private String name;
-    public ProductData() {
+    private int imageId;
+    private String param;
+    private float price;
+    private int number;
+    @Id(autoincrement = true)//设置自增长
+    private Long id;
 
-    }
-    public ProductData(String name,int imageId, String param, float price, int number) {
+
+
+
+    public ProductInfo(String name, int imageId, String param, float price, int number) {
         this.name = name;
         this.imageId = imageId;
         this.param = param;
         this.price = price;
         this.number = number;
     }
-    public ProductData(String name ,int imageId, String param, float price) {
+    public ProductInfo(String name , int imageId, String param, float price) {
         this.name = name;
         this.imageId = imageId;
         this.param = param;
         this.price = price;
+    }
+    @Generated(hash = 309635516)
+    public ProductInfo(String name, int imageId, String param, float price, int number,
+            Long id) {
+        this.name = name;
+        this.imageId = imageId;
+        this.param = param;
+        this.price = price;
+        this.number = number;
+        this.id = id;
+    }
+    @Generated(hash = 49329718)
+    public ProductInfo() {
     }
 
     public float getPrice() {
@@ -64,6 +83,12 @@ public class ProductData {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
 

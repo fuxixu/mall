@@ -3,8 +3,6 @@ package com.example.mall.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
 import com.example.mall.model.bean.OrderData;
-import com.example.mall.model.bean.ProductData;
 
 import java.util.List;
 
