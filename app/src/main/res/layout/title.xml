@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/title_backgroud"
+    android:background="@mipmap/title_bg"
     android:orientation="horizontal"
 
     >
@@ -11,7 +11,7 @@
         android:id="@+id/image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/vp_title_icon"
+        android:background="@mipmap/title_icon"
         android:layout_margin="5dp"
         android:layout_gravity="center"
         />
@@ -40,8 +40,8 @@
 
     <Button
         android:id="@+id/btn_title_account"
-        android:layout_width="100sp"
-        android:layout_height="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:text="结算"
@@ -56,8 +56,8 @@
         android:gravity="right">
         <Button
             android:id="@+id/btn_title_cart"
-            android:layout_width="100sp"
-            android:layout_height="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="购物车"
             android:textColor="#fff"
@@ -67,8 +67,8 @@
             />
         <Button
             android:id="@+id/btn_title_order"
-            android:layout_width="100sp"
-            android:layout_height="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
 
             android:text="我的订单"

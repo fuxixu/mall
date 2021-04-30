@@ -17,7 +17,7 @@
 
     <string name="btn_cart_pay">货到付款</string>
     <string name="btn_cart_clear">清空购物车</string>
-    <string name="moner">¥</string>
+    <string name="money">¥</string>
 
 
 </resources>

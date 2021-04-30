@@ -62,15 +62,22 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
         DbCart.init(this);
         DbOrder.init(this);
         initFruits(currentLevel);
-        initView();
         initTablayout();
-
-
+        initAdpter();
+        EventUtils.getInstance().postAllPrice();//初始title总价格
     }
-
-    private void initView() {
+    /**
+     * Create by hsw
+     * on 2021/4/21.
+     * 设置recyclerview适配器
+     */
+    private void initAdpter() {
         recyclerView = findViewById(R.id.recycler_view);
-        setRecyclerView();
+            recyclerView.setFocusable(true);
+            StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
+            recyclerView.setLayoutManager(layoutManager);
+            adapter = new MActivityAdapter(productInfoList,this);
+            recyclerView.setAdapter(adapter);
     }
 
     private void initTablayout() {
@@ -144,20 +151,7 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
     }
 
 
-    /**
-     * Create by hsw
-     * on 2021/4/21.
-     * 设置recyclerview适配器
-     */
-    private void setRecyclerView() {
-        recyclerView.setFocusable(true);
-        StaggeredGridLayoutManager layoutManager = new
-                StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new MActivityAdapter(productInfoList,this);
-        recyclerView.setAdapter(adapter);
 
-    }
 
 
 

@@ -109,11 +109,25 @@ public class DbCart {
 
 
     /**插入一条记录，表里面要没有与之相同的记录
-     *
-     * @param productInfo
+     *有相同的名字，数量加1
+     * 没有相同的名字，数量设置为1
+     * @param info
      */
-    public long insert(ProductInfo productInfo){
-           return  productInfoDao.insert(productInfo);
+     public long insert(ProductInfo info){
+         List<ProductInfo> a =productInfoDao.queryBuilder().list();
+
+         if (a.size()!=0){
+             for (ProductInfo value : a) {
+                 if (value.getName() == info.getName()){
+                     mDbController.addOne(info);
+                     return -1;
+                 }
+
+             }
+
+         }
+             info.setNumber(1);
+           return  productInfoDao.insert(info);
     }
 
     /**

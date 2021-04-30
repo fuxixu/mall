@@ -70,7 +70,7 @@ public class TitleLayout extends LinearLayout  implements View.OnClickListener{
     public void onReceiveMsg(MessageWrap message) {
         switch (message.getMessage()) {
             case  R.id.title_price_tv:
-                title_price_tv.setText(String.valueOf(DbCart.getInstance().getAllPrice()));
+                title_price_tv.setText("¥"+String.valueOf(DbCart.getInstance().getAllPrice()));
                 Log.d("bb","传送成功"+message.getAllPrice());
                 break;
 
