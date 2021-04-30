@@ -8,9 +8,11 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
+import com.example.mall.model.bean.OrderInfo;
 import com.example.mall.model.bean.PersonInfor;
 import com.example.mall.model.bean.ProductInfo;
 
+import com.example.mall.model.dao.OrderInfoDao;
 import com.example.mall.model.dao.PersonInforDao;
 import com.example.mall.model.dao.ProductInfoDao;
 
@@ -23,9 +25,11 @@ import com.example.mall.model.dao.ProductInfoDao;
  */
 public class DaoSession extends AbstractDaoSession {
 
+    private final DaoConfig orderInfoDaoConfig;
     private final DaoConfig personInforDaoConfig;
     private final DaoConfig productInfoDaoConfig;
 
+    private final OrderInfoDao orderInfoDao;
     private final PersonInforDao personInforDao;
     private final ProductInfoDao productInfoDao;
 
@@ -33,22 +37,32 @@ public class DaoSession extends AbstractDaoSession {
             daoConfigMap) {
         super(db);
 
+        orderInfoDaoConfig = daoConfigMap.get(OrderInfoDao.class).clone();
+        orderInfoDaoConfig.initIdentityScope(type);
+
         personInforDaoConfig = daoConfigMap.get(PersonInforDao.class).clone();
         personInforDaoConfig.initIdentityScope(type);
 
         productInfoDaoConfig = daoConfigMap.get(ProductInfoDao.class).clone();
         productInfoDaoConfig.initIdentityScope(type);
 
+        orderInfoDao = new OrderInfoDao(orderInfoDaoConfig, this);
         personInforDao = new PersonInforDao(personInforDaoConfig, this);
         productInfoDao = new ProductInfoDao(productInfoDaoConfig, this);
 
+        registerDao(OrderInfo.class, orderInfoDao);
         registerDao(PersonInfor.class, personInforDao);
         registerDao(ProductInfo.class, productInfoDao);
     }
     
     public void clear() {
+        orderInfoDaoConfig.clearIdentityScope();
         personInforDaoConfig.clearIdentityScope();
         productInfoDaoConfig.clearIdentityScope();
+    }
+
+    public OrderInfoDao getOrderInfoDao() {
+        return orderInfoDao;
     }
 
     public PersonInforDao getPersonInforDao() {

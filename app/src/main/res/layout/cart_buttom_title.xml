@@ -42,17 +42,33 @@
             android:textColor="#666666"
             android:layout_margin="10sp"
             />
+
     </LinearLayout>
-    <Button
-        android:id="@+id/cart_pay"
-        android:layout_width="100sp"
-        android:layout_height="30sp"
-        android:text="货到付款"
-        android:layout_marginRight="10dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimenx_30dp"
+        android:orientation="horizontal"
         android:layout_gravity="right|center"
+        android:layout_marginRight="@dimen/dimenx_10dp">
+    <Button
+        android:id="@+id/cart_clear"
+        android:layout_width="@dimen/dimenx_100dp"
+        android:layout_height="match_parent"
+        android:text="@string/btn_cart_clear"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:background="@drawable/selector_btn"
         />
 
+        <Button
+            android:id="@+id/cart_pay"
+            android:layout_width="@dimen/dimenx_100dp"
+            android:layout_height="match_parent"
+            android:text="@string/btn_cart_pay"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/selector_btn"
+            />
+
+    </LinearLayout>
 </FrameLayout>

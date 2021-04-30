@@ -31,18 +31,18 @@ public class ListerRecycler extends RecyclerView {
     }
 
     public void init() {
-        setItemAnimator(null);
-        /**
-         * 该属性是当一个为view获取焦点时，定义viewGroup和其子控件两者之间的关系。
-         *
-         * 属性的值有三种：
-         * beforeDescendants：viewgroup会优先其子类控件而获取到焦点
-         * afterDescendants：viewgroup只有当其子类控件不需要获取焦点时才获取焦点
-         * blocksDescendants：viewgroup会覆盖子类控件而直接获得焦点
-         * */
-        setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        setChildrenDrawingOrderEnabled(true);
-        this.setFocusable(true);
+//        setItemAnimator(null);
+//        /**
+//         * 该属性是当一个为view获取焦点时，定义viewGroup和其子控件两者之间的关系。
+//         *
+//         * 属性的值有三种：
+//         * beforeDescendants：viewgroup会优先其子类控件而获取到焦点
+//         * afterDescendants：viewgroup只有当其子类控件不需要获取焦点时才获取焦点
+//         * blocksDescendants：viewgroup会覆盖子类控件而直接获得焦点
+//         * */
+//        setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+//        setChildrenDrawingOrderEnabled(true);
+//        this.setFocusable(true);
     }
 
 
@@ -53,18 +53,18 @@ public class ListerRecycler extends RecyclerView {
 
     }
 
-    @Override
-    public void addFocusables(ArrayList<View> views, int direction, int focusableMode) {
-        View view = null;
-        if (this.hasFocus() || position < 0 || (view = getLayoutManager().findViewByPosition(position)) == null) {
-            super.addFocusables(views,direction,focusableMode);
-        }else if(view.isFocusable()){
-//将当前的view放到Focusable views列表中，再次移入焦点时会取到该view,实现焦点记忆功能
-            views.add(view);
-        }else{
-            super.addFocusables(views,direction,focusableMode);
-        }
-    }
+//    @Override
+//    public void addFocusables(ArrayList<View> views, int direction, int focusableMode) {
+//        View view = null;
+//        if (this.hasFocus() || position < 0 || (view = getLayoutManager().findViewByPosition(position)) == null) {
+//            super.addFocusables(views,direction,focusableMode);
+//        }else if(view.isFocusable()){
+////将当前的view放到Focusable views列表中，再次移入焦点时会取到该view,实现焦点记忆功能
+//            views.add(view);
+//        }else{
+//            super.addFocusables(views,direction,focusableMode);
+//        }
+//    }
 
     public int getPosition(){
         if (hasFocus()){
@@ -72,6 +72,23 @@ public class ListerRecycler extends RecyclerView {
             return position;
         }
         return -1;
-
     }
+//    @Override
+//    protected int getChildDrawingOrder(int childCount, int i) {
+//        View focusedChild = getFocusedChild();
+//        if(focusedChild== null){
+//            return super.getChildDrawingOrder(childCount, i);
+//        }else{
+//            int index = indexOfChild(focusedChild);
+//
+//            if(i == childCount-1){
+//                return index;
+//            }
+//            if(i<index){
+//                return i;
+//            }
+//            return i+1;
+//        }
+//    }
+
 }

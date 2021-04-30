@@ -23,10 +23,10 @@ import java.util.List;
 public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.ViewHolder> {
     private List<ProductInfo> mProductInfoList;
 
-    private IProduct person;
+    private IProduct iProduct;
     public MActivityAdapter(List<ProductInfo> productInfoList, IProduct person) {
         mProductInfoList = productInfoList;
-        this.person = person;
+        this.iProduct = person;
     }
 
 
@@ -60,7 +60,7 @@ public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.View
                 int position = holder.getAdapterPosition();
                 ProductInfo productInfo = mProductInfoList.get(position);
                 Toast.makeText(v.getContext(), "you clicked view " + productInfo.getName(), Toast.LENGTH_SHORT).show();
-                person.inSert(productInfo);
+                iProduct.inSert(productInfo);//回调接口
             }
         });
         holder.fruitImage.setOnClickListener(new View.OnClickListener() {

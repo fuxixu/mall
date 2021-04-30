@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private List<ProductInfo> ProductInfo;
-    public CartAdapter(List<ProductInfo> ProductInfo) {
+    public CartAdapter(List<com.example.mall.model.bean.ProductInfo> ProductInfo) {
         this.ProductInfo = ProductInfo;
     }
 
@@ -61,7 +61,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_ryv_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_item, parent, false);
         view.setFocusable(true);
         final ViewHolder holder = new ViewHolder(view);
         return holder;

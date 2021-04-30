@@ -2,7 +2,6 @@ package com.example.mall.ui;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
 import com.example.mall.adapter.OrderAdapter;
-import com.example.mall.model.bean.OrderData;
-import com.example.mall.util.Size;
+import com.example.mall.model.bean.OrderInfo;
+import com.example.mall.model.db.DbOrder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderFragment extends DialogFragment implements View.OnClickListener {
     private View mRootView;
-    private List<OrderData> orderDataList = new ArrayList<OrderData>();
+    private List<OrderInfo> list = new ArrayList<OrderInfo>();
     @Override
     public void onClick(View v) {
 
@@ -53,24 +52,23 @@ public class OrderFragment extends DialogFragment implements View.OnClickListene
         int a = R.id.order_recycler_view;
         RecyclerView order_recycler_view = mRootView.findViewById(a);
 
-        initOder();
 
+        init();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         order_recycler_view.setLayoutManager(linearLayoutManager);
-        OrderAdapter orderAdapter = new OrderAdapter(orderDataList);
+        OrderAdapter orderAdapter = new OrderAdapter(list);
         order_recycler_view.setAdapter(orderAdapter);
     }
-    private void  initOder() {
-        for (int i = 0; i < 15; i++) {
 
-            String a = "2020.11.17-17:14:56";
-            String b = "330ml";
-            String c = "8.00";
-            String d = "等待配送";
-            OrderData orderData = new OrderData(a,b,c,d);
-            orderDataList.add(orderData);
+    private void init(){
+        List<OrderInfo> all = DbOrder.getInstance().searchAll();//从数据库里面取数据
+        for (int i = all.size()-1;i>=0;i--){
+            list.add(all.get(i))  ;
+
         }
     }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -80,11 +78,11 @@ public class OrderFragment extends DialogFragment implements View.OnClickListene
         windowParams.y = 100;
         window.setAttributes(windowParams);
         Dialog dialog = getDialog();
-        if (dialog != null) {
-            DisplayMetrics dm = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-            dialog.getWindow().setLayout((int) (dm.widthPixels * 1), (int) (dm.heightPixels * 1));
-
-        }
+//        if (dialog != null) {
+//            DisplayMetrics dm = new DisplayMetrics();
+//            getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+//            dialog.getWindow().setLayout((int) (dm.widthPixels * 1), (int) (dm.heightPixels * 1));
+//
+//        }
         }
 }

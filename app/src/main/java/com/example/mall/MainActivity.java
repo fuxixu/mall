@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.mall.contract.IProduct;
-import com.example.mall.model.bean.ProductInfo;
 import com.example.mall.adapter.MActivityAdapter;
+import com.example.mall.model.bean.ProductInfo;
 import com.example.mall.model.db.DbCart;
+import com.example.mall.model.db.DbOrder;
 import com.example.mall.ui.PayFragment;
 import com.example.mall.ui.CartFragment;
 import com.example.mall.ui.OrderFragment;
+import com.example.mall.util.EventUtils;
 import com.example.mall.util.MessageWrap;
 
 import org.greenrobot.eventbus.EventBus;
@@ -56,12 +58,13 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
         if (actionbar != null) {
             actionbar.hide();
         }
-
+        //初始化数据库
+        DbCart.init(this);
+        DbOrder.init(this);
         initFruits(currentLevel);
         initView();
         initTablayout();
 
-      DbCart.initDbcat(this);
 
     }
 
@@ -211,30 +214,22 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
             case  R.id.pay_succeed:
                 Log.d("nimei","点到了pay");
                 payFragment.dismiss();
-                break;
-            case  R.id.tv_title_price:
 
                 break;
 
-            case R.id.cart_pay:
-                Log.d("nimei","点到了");
+            case R.id.cart_pay: //顺序  注销cart  打开pay   数据保存到order数据库    清除cart数据库
                 cartFragment.dismiss();
-
                 payFragment = new PayFragment();
                 payFragment.show(getSupportFragmentManager(), "");
-
+                DbOrder.getInstance().save();
                 DbCart.getInstance().deleteAll();
-
                 break;
             case R.id.btn_title_account:
-                Log.d("nimei","点到了");
+                openCart();
 
-//                final PayFragment payFragment = new PayFragment();
-//                payFragment.show(getSupportFragmentManager(), "");
                 break;
             case R.id.btn_title_cart :
-                 cartFragment = new CartFragment();
-                cartFragment.show(getSupportFragmentManager(), "");
+                openCart();
                 break;
             case R.id.btn_title_order:
                 orderFragment = new OrderFragment();
@@ -245,7 +240,19 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
         }
     }
     /**
-     * Create by hsw
+     * Create by fu
+     * on 2021/4/29.
+     *统一管理cartFragment实例
+     *
+     */
+    private void openCart(){
+            cartFragment = new CartFragment();
+            cartFragment.show(getSupportFragmentManager(), "");
+    }
+
+
+    /**
+     * Create by fu
      * on 2021/4/27.
      *
      * 监听遥控器上下左右按键
@@ -285,5 +292,7 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
     @Override
     public void inSert(ProductInfo info) {
         DbCart.getInstance().insert(info);
+
+        EventUtils.getInstance().postAllPrice();
     }
 }

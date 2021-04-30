@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.mall.model.bean.ProductInfo;
 import com.example.mall.model.dao.DaoMaster;
 import com.example.mall.model.dao.DaoSession;
-import com.example.mall.model.dao.PersonInforDao;
 import com.example.mall.model.dao.ProductInfoDao;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class DbCart {
     }
 
 
-    public static void initDbcat(Context context){
+    public static void init(Context context){
 
         if(mDbController == null){
             synchronized (DbCart.class){
@@ -114,20 +113,7 @@ public class DbCart {
      * @param productInfo
      */
     public long insert(ProductInfo productInfo){
-
-        //List<ProductInfo> all = searchAll();
-        //遍历数据库里面是否有相同的产品
-        //选择更新产品的数量
-        for(ProductInfo value:searchAll()){
-            if (productInfo.getName().hashCode() == value.getName().hashCode()){
-                addOne(value);
-                return -1;
-            }
-        }
-        //数据库没有相同名字的产品，数量设置为1
-           productInfo.setNumber(1);
            return  productInfoDao.insert(productInfo);
-
     }
 
     /**
@@ -160,7 +146,7 @@ public class DbCart {
 
 
     /**
-     * 增加数量
+     * 更新
      * @param productInfo
      */
     public void update(ProductInfo productInfo){
@@ -200,5 +186,31 @@ public class DbCart {
     public void deleteAll(){
 
         productInfoDao.deleteAll();
+    }
+
+
+    synchronized public int getAllNumber() {
+            int number = 0;
+
+            List<ProductInfo> productInfos =mDbController.searchAll();
+            // 增强型for循环遍历
+            for(ProductInfo value:productInfos){
+                number = number+value.getNumber();
+            }
+
+            return number;
+    }
+
+    synchronized public float getAllPrice() {
+        float price = 0;
+        //获取所有价格
+        List<ProductInfo> productInfos = mDbController.searchAll();
+        // 增强型for循环遍历
+        for (ProductInfo value : productInfos) {
+            float a;
+            a = value.getPrice() * value.getNumber();
+            price = price + a;
+        }
+        return price;
     }
 }

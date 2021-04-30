@@ -77,18 +77,33 @@
             android:layout_height="match_parent"
             android:gravity="right">
             >
-
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="20sp"
-                android:layout_height="20sp"
+                android:layout_width="@dimen/dimenx_20dp"
+                android:layout_height="@dimen/dimenx_20dp"
                 android:background="@drawable/display_cart"
-                android:layout_marginRight="10sp"
+                android:layout_marginRight="@dimen/dimenx_20dp"
                 />
-        </LinearLayout>
-        </LinearLayout>
+                <TextView
+                   android:layout_marginRight="@dimen/dimenx_10dp"
+                    android:layout_width="@dimen/dimenx_10dp"
+                    android:layout_height="@dimen/dimenx_10dp"
+                    android:textSize="@dimen/dimenx_8dp"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="#fff"
+                    android:layout_gravity="right"
+                    android:background="@drawable/cart_shoppingcart_number"
+                    />
+        </FrameLayout>
+
         </LinearLayout>
     </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
 
 
 

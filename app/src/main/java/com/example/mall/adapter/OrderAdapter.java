@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mall.R;
-import com.example.mall.model.bean.OrderData;
+import com.example.mall.model.bean.OrderInfo;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import java.util.List;
  * on 2021/4/21.
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
-    private List<OrderData> ProductData;
-    public OrderAdapter(List<OrderData> ProductData) {
-        this.ProductData = ProductData;
+    private List<OrderInfo> list;
+    public OrderAdapter(List<OrderInfo> list) {
+        this.list = list;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -37,6 +37,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             int b = R.id.order_name;
             int c =R.id.oder_all_price;
             int d = R.id.oder_status;
+
             order_time = (TextView) view.findViewById(a);
             order_name = (TextView) view.findViewById(b);
             oder_all_price = (TextView) view.findViewById(c);
@@ -50,7 +51,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int a = R.layout.order_recycler_item;
+        int a = R.layout.order_item;
         View view = LayoutInflater.from(parent.getContext()).inflate(a, parent, false);
         view.setFocusable(true);
         final ViewHolder holder = new ViewHolder(view);
@@ -60,21 +61,23 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        OrderData data = ProductData.get(position);
-        String a =data.getName();
-        String b =data.getTime();
-        String c =data.getAllPrice();
-        String d = data.getStatus();
-        holder.order_time.setText(a);
-        holder.order_name.setText(b);
-       holder.oder_all_price.setText(c);
-       holder.oder_status.setText(d);
+        OrderInfo a = list.get(position);
+
+        holder.order_time.setText(a.getTime());
+        holder.order_name.setText(a.getName());
+       holder.oder_all_price.setText(a.getAllPrice());
+       if (a.getStatus()){
+           holder.oder_status.setText("等待配送");
+       }else {
+           holder.oder_status.setText("配送完成");
+       }
+
     }
 
 
     @Override
     public int getItemCount() {
-        return ProductData.size();
+        return list.size();
     }
 
 

@@ -29,12 +29,11 @@
             />
 
         <TextView
-            android:id="@+id/tv_title_price"
+            android:id="@+id/title_price_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="¥2.5"
-            android:textColor="#fff" />
+            android:textColor="@color/orange" />
 
     </LinearLayout>
 
