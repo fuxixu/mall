@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 
 import com.example.mall.contract.IProduct;
-import com.example.mall.adapter.MActivityAdapter;
+import com.example.mall.adapter.DisplayAdapter;
 import com.example.mall.model.bean.ProductInfo;
 import com.example.mall.model.db.DbCart;
 import com.example.mall.model.db.DbOrder;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
     private RecyclerView recyclerView;
    private VerticalTabLayout tabLayout;
     private List<ProductInfo> productInfoList = new ArrayList<ProductInfo>();
-    private  MActivityAdapter adapter;
+    private DisplayAdapter adapter;
    private  CartFragment cartFragment;
     private PayFragment payFragment;
     private OrderFragment orderFragment;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
             recyclerView.setFocusable(true);
             StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
-            adapter = new MActivityAdapter(productInfoList,this);
+            adapter = new DisplayAdapter(productInfoList,this);
             recyclerView.setAdapter(adapter);
     }
 
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
                 .setTitle(new QTabView.TabTitle.Builder()
                         .setContent(this.getString(name))
                         .setTextColor(Color.WHITE, 0xBBFFFFFF)
-                        .setTextSize(20)
+                        .setTextSize(35)
                         .build());
 
 
@@ -149,13 +149,6 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
         adapter.notifyDataSetChanged();//
 
     }
-
-
-
-
-
-
-
 
     private void  initFruits(int id) {
         for (int i = 0; i < 15; i++) {
@@ -280,7 +273,6 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
                 break;
         }
         return super.onKeyDown(keyCode, event);
-
     }
 
     @Override

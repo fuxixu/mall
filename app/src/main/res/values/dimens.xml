@@ -114,7 +114,26 @@
     <dimen name="dimenx_49.5dp">49.5dp</dimen>
     <dimen name="dimenx_50.5dp">50.5dp</dimen>
     <dimen name="dimenx_51dp">51dp</dimen>
+    <dimen name="dimenx_52dp">52dp</dimen>
+    <dimen name="dimenx_53dp">53dp</dimen>
+    <dimen name="dimenx_54dp">54dp</dimen>
+    <dimen name="dimenx_55dp">55dp</dimen>
+    <dimen name="dimenx_56dp">56dp</dimen>
+    <dimen name="dimenx_57dp">57dp</dimen>
+    <dimen name="dimenx_58dp">58dp</dimen>
+    <dimen name="dimenx_59dp">59dp</dimen>
+
+
+
     <dimen name="dimenx_60dp">60dp</dimen>
+    <dimen name="dimenx_61dp">61dp</dimen>
+    <dimen name="dimenx_62dp">62dp</dimen>
+    <dimen name="dimenx_63dp">63dp</dimen>
+    <dimen name="dimenx_64dp">64dp</dimen>
+
+
+
+
     <dimen name="dimenx_65dp">65dp</dimen>
     <dimen name="dimenx_70dp">70dp</dimen>
     <dimen name="dimenx_75dp">75dp</dimen>

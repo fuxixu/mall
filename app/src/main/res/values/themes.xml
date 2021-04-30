@@ -14,13 +14,5 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
-<!--        <item name="tabBackground">@color/white</item>-->
-<!--        <item name="tabIndicatorColor">@color/green</item>-->
-        <item name="tabIndicatorHeight">0dp</item>
-        <item name="tabSelectedTextColor">@color/white</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/bg_gray</item>
 
-    </style>
 </resources>

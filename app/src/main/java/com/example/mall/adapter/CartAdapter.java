@@ -73,7 +73,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         ProductInfo data = ProductInfo.get(position);
         holder.cart_ryv_item_image.setImageResource(data.getImageId());
         holder.cart_ryv_item_price.setText("¥"+Float.toString(data.getPrice()));
-        holder.cart_ryv_item_param.setText(data.getParam());
+        holder.cart_ryv_item_param.setText(data.getName()+data.getParam());
         holder.cart_ryv_item_number.setText(""+data.getNumber());
     }
 

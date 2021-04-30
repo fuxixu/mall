@@ -33,7 +33,7 @@ public class OrderFragment extends DialogFragment implements View.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.orderhistory_dialog_fragment, null);
+        mRootView = inflater.inflate(R.layout.order_fragment, null);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         return mRootView;
     }

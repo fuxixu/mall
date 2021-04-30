@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.mall.ui.customview.LinearViewItem xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cart_item_linear"
-    android:background="@drawable/selector_cart_item_bg"
+    android:background="@mipmap/cart_item_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
+    android:layout_marginLeft="@dimen/dimenx_10dp"
+    android:layout_marginRight="@dimen/dimenx_10dp"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
         android:id="@+id/cart_ryv_item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dimenx_5dp"
+        android:layout_marginLeft="@dimen/dimenx_10dp"
         android:layout_gravity="center_horizontal"
         />
 
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dimenx_10dp"
         >
         <TextView
             android:id="@+id/cart_ryv_item_param"
@@ -33,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:textColor="#fff"
+            android:textSize="@dimen/dimenx_30dp"
             android:text="@string/cart_ryv_item_param"
             />
         <TextView
@@ -40,7 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:textColor="@color/bisque"
+            android:textColor="@color/title_price"
+            android:textSize="@dimen/dimenx_30dp"
             />
 
     </LinearLayout>
@@ -54,9 +58,9 @@
 
 
         <ImageView
-            android:layout_width="@dimen/dimenx_15dp"
-            android:layout_height="@dimen/dimenx_15dp"
-            android:background="@drawable/cart_ryv_item_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/cart_item_sub"
             android:layout_gravity="center"
             />
 
@@ -64,15 +68,16 @@
             android:id="@+id/cart_ryv_item_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/bisque"
-            android:layout_margin="@dimen/dimenx_2dp"
+            android:textColor="@color/title_price"
+            android:layout_margin="@dimen/dimenx_10dp"
             android:layout_gravity="center"
+            android:textSize="@dimen/dimenx_30dp"
             />
 
         <ImageView
-            android:layout_width="@dimen/dimenx_15dp"
-            android:layout_height="@dimen/dimenx_15dp"
-            android:background="@drawable/cart_ryv_item_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/cart_item_add"
             android:layout_gravity="center"
             android:layout_marginRight="@dimen/dimenx_3dp"
             />

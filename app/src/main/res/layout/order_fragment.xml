@@ -25,7 +25,7 @@
            android:layout_gravity="center"
             android:text="历史订单"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="@dimen/dimenx_41dp"
             />
     </LinearLayout>
 
@@ -47,28 +47,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="@dimen/dimenx_34dp"
             android:text="@string/order_time"/>
         <TextView
             android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="@dimen/dimenx_34dp"
             android:text="@string/order_name"/>
         <TextView
             android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="@dimen/dimenx_34dp"
             android:text="@string/order_all_price"/>
         <TextView
             android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="25sp"
+            android:textSize="@dimen/dimenx_34dp"
             android:text="@string/order_status"/>
 
     </LinearLayout>

@@ -20,11 +20,11 @@ import java.util.List;
  * Create by hsw
  * on 2021/4/21.
  */
-public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.ViewHolder> {
+public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
     private List<ProductInfo> mProductInfoList;
 
     private IProduct iProduct;
-    public MActivityAdapter(List<ProductInfo> productInfoList, IProduct person) {
+    public DisplayAdapter(List<ProductInfo> productInfoList, IProduct person) {
         mProductInfoList = productInfoList;
         this.iProduct = person;
     }
@@ -49,7 +49,7 @@ public class MActivityAdapter extends RecyclerView.Adapter<MActivityAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.diplay_item, parent, false);
         view.setFocusable(true);
         final ViewHolder holder = new ViewHolder(view);
 

@@ -36,7 +36,7 @@ public class PayFragment extends DialogFragment implements View.OnClickListener 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.pay_dialog_fragment, null);
+        mRootView = inflater.inflate(R.layout.pay_fragment, null);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         return mRootView;
     }

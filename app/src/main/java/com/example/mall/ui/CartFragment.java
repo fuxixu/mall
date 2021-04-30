@@ -105,7 +105,7 @@ public class CartFragment extends DialogFragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.cart_dialog_fragment, null);
+        mRootView = inflater.inflate(R.layout.cart_fragment, null);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);//设置没有标题栏
         return mRootView;
     }

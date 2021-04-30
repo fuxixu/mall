@@ -24,14 +24,16 @@
                 android:layout_height="wrap_content"
                 android:text="合计:"
                 android:layout_gravity="center"
-                android:textColor="@color/whilte2"
+                android:textSize="@dimen/dimenx_35dp"
+                android:textColor="@color/white"
                 android:layout_marginLeft="50sp"/>
             <TextView
                 android:id="@+id/cart_all_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#666666"
+                android:textColor="@color/title_price"
+                android:textSize="@dimen/dimenx_40.5dp"
                 />
         </LinearLayout>
         <TextView
@@ -55,8 +57,10 @@
         android:layout_width="@dimen/dimenx_100dp"
         android:layout_height="match_parent"
         android:text="@string/btn_cart_clear"
+        android:textSize="@dimen/dimenx_30dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
+
         android:background="@drawable/selector_btn"
         />
 
@@ -65,6 +69,7 @@
             android:layout_width="@dimen/dimenx_100dp"
             android:layout_height="match_parent"
             android:text="@string/btn_cart_pay"
+            android:textSize="@dimen/dimenx_30dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:background="@drawable/selector_btn"

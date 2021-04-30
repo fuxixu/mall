@@ -15,9 +15,9 @@
         android:id="@+id/cart_all_number"
         android:layout_width="wrap_content"
         android:layout_height="25sp"
-        android:textSize="20sp"
+        android:textSize="@dimen/dimenx_29dp"
         android:gravity="center"
-        android:textColor="#fff"
+        android:textColor="@color/title_price"
         android:layout_gravity="right"
         android:background="@drawable/cart_shoppingcart_number"
         />
