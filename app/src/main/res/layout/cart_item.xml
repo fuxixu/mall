@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.mall.ui.customview.LinearViewItem xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cart_item_linear"
-    android:background="@mipmap/cart_item_bg"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginLeft="@dimen/dimenx_10dp"
     android:layout_marginRight="@dimen/dimenx_10dp"
+    android:background="@drawable/selector_cart_item_bg"
     >
+<!--    android:background="@mipmap/cart_item_bg"-->
+
+<!--    最外围layout 包含所有的控件，用来设置选择框大于item-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimenx_20dp"
+        android:layout_marginRight="@dimen/dimenx_20dp"
+        android:orientation="horizontal">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,4 +99,5 @@
         android:layout_height="wrap_content"
         android:background="@mipmap/cart_item_line"
         />
+    </LinearLayout>
 </com.example.mall.ui.customview.LinearViewItem>

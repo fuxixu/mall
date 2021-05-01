@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.mall.ui.customview.CardViewRecylerItem xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+
     android:focusableInTouchMode="true"
-    app:cardCornerRadius="@dimen/dimenx_20dp"
-  >
+    android:orientation="vertical" >
+<!--    android:background="@color/white"-->
+
+<!--    android:scaleType="centerCrop"-->
+<!--    app:cardCornerRadius="@dimen/dimenx_20dp"-->
+
+<!--    app:cardCornerRadius="@dimen/dimenx_20dp"-->
+<!--    android:scaleType="centerCrop"-->
+
 <!--    最外层的垂直布局-->
 
     <LinearLayout
+
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 <!--产品的图片展示-->
 <!--    <LinearLayout-->
@@ -23,7 +31,7 @@
 
         <ImageView
             android:id="@+id/fruit_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             android:layout_gravity="center_horizontal"/>
@@ -31,26 +39,26 @@
 
 
 <!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:orientation="vertical"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight="1">-->
+<!--图片以下的布局-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/display_item_bg">
         <!--        产品名字和参数-->
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@mipmap/display_item_bg">
+            >
 <!--            android:layout_gravity="center_horizontal"-->
 
 
             <TextView
                 android:id="@+id/product_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:gravity="left"
                 android:textSize="@dimen/dimenx_22dp"
                 />
 
@@ -71,7 +79,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
             android:text="¥2.5"
             android:textColor="@color/display_item_price"
             android:textSize="@dimen/dimenx_30dp"
@@ -89,10 +96,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/display_item_cart"
-                android:layout_marginRight="@dimen/dimenx_20dp"
+
                 />
                 <TextView
-                   android:layout_marginRight="@dimen/dimenx_10dp"
+
                     android:layout_width="@dimen/dimenx_10dp"
                     android:layout_height="@dimen/dimenx_10dp"
                     android:textSize="@dimen/dimenx_8dp"
@@ -108,8 +115,8 @@
     </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-<!--    </LinearLayout>-->
+    </LinearLayout>
 
 
 
-</com.example.mall.ui.customview.CardViewRecylerItem>
+</LinearLayout>

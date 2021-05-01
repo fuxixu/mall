@@ -18,6 +18,7 @@ import com.example.mall.model.db.DbOrder;
 import com.example.mall.ui.PayFragment;
 import com.example.mall.ui.CartFragment;
 import com.example.mall.ui.OrderFragment;
+import com.example.mall.ui.customview.GridSpacingItemDecoration;
 import com.example.mall.util.EventUtils;
 import com.example.mall.util.MessageWrap;
 
@@ -76,6 +77,13 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
             recyclerView.setFocusable(true);
             StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(layoutManager);
+
+        int spanCount = 5; // 3 columns
+        int spacing = 50; // 50px
+        boolean includeEdge = true;
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
+
+
             adapter = new DisplayAdapter(productInfoList,this);
             recyclerView.setAdapter(adapter);
     }
