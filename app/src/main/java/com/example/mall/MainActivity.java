@@ -162,21 +162,21 @@ public class MainActivity extends AppCompatActivity  implements IProduct {
         for (int i = 0; i < 15; i++) {
 
             String a = "薯条"+id;
-            int b = R.drawable.display_chips;
+            int b = R.mipmap.display_chips;
             String c = "550ml*1瓶";
             float d = (float) 2.50;
             ProductInfo apple = new ProductInfo(a,b,c,d);
             productInfoList.add(apple);
 
             String e = "方便面"+id;
-            int f = R.drawable.display_noodle;
+            int f = R.mipmap.display_noodle;
             String g = "550ml*1瓶";
             float h = (float) 2.50;
             ProductInfo banana = new ProductInfo(e,f,g,h);
             productInfoList.add(banana);
 
             String j = "农夫山泉"+id;
-            int k = R.drawable.display_water;
+            int k = R.mipmap.display_water;
             String l = "550ml*1瓶";
             float m  = (float) 2.50;
             ProductInfo orange = new ProductInfo(j,k,l,m);

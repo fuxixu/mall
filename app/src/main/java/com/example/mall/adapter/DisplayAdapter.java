@@ -77,7 +77,7 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductInfo ProductInfo = mProductInfoList.get(position);
-        holder.fruitImage.setImageResource(ProductInfo.getImageId());
+        //holder.fruitImage.setImageResource(ProductInfo.getImageId());
         holder.product_name.setText(ProductInfo.getName());
         holder.product_param.setText("550ml*1瓶");
     }

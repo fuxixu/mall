@@ -29,17 +29,35 @@
 <!--        android:layout_weight="1"-->
 <!--        >-->
 
+
         <ImageView
             android:id="@+id/fruit_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="246dp"
             android:scaleType="centerCrop"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/display_chips"/>
 
 
 
 <!--    </LinearLayout>-->
-<!--图片以下的布局-->
+<!--两个背景-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="132dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/display_item_bg_white"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/display_item_bg"
+                android:alpha="37"/>
+
+            <!--图片以下的布局-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -115,6 +133,8 @@
     </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+        </FrameLayout>
     </LinearLayout>
 
 

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@mipmap/title_bg"
     android:orientation="horizontal"
-
+    android:alpha="57"
     >
 
     <ImageView
@@ -15,6 +15,7 @@
         android:layout_marginLeft="@dimen/dimenx_70dp"
         android:layout_gravity="center"
         android:alpha="1"
+
         />
     <LinearLayout
         android:layout_width="wrap_content"
